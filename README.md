@@ -46,7 +46,7 @@ This project is built with **Kotlin** and **Gradle**.
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/theycallmerubik/Shizutify.git](https://github.com/theycallmerubik/Shizutify.git)
+   git clone https://github.com/theycallmerubik/Shizutify.git
 
 ```
 
