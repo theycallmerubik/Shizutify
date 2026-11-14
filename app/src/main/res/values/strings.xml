@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Shizutify</string>
+    <string name="service_running">SERVICE ACTIVE (TAP TO STOP)</string>
+    <string name="service_stopped">SERVICE STOPPED (TAP TO START)</string>
+    <string name="title_filter_hint">Notification Title Filter (Regex)</string>
+    <string name="text_filter_hint">Notification Text Filter (Regex)</string>
+    <string name="case_sensitive">Case Sensitive</string>
+    <string name="select_apps_btn">Select Target Applications</string>
+    <string name="search_apps_hint">Search installed apps…</string>
+</resources>
