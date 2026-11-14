@@ -1,4 +1,3 @@
-```markdown
 # Shizutify 🎵✨
 
 **Automatic Ad Skipper & App Restarter via Shizuku**
@@ -69,7 +68,5 @@ This project is licensed under the MIT License - see the [LICENSE](https://www.g
 ---
 
 *Disclaimer: This app is a utility for automating local device actions via Shizuku. It does not modify, hack, or alter the code of any third-party applications.*
-
-```
 
 ```
