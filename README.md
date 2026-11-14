@@ -45,18 +45,17 @@ Shizutify is a lightweight, open-source Android utility that automatically skips
 This project is built with **Kotlin** and **Gradle**. 
 
 1. Clone the repository:
-   ```bash
+```bash
    git clone https://github.com/theycallmerubik/Shizutify.git
-
 ```
 
 2. Open the project in **Android Studio**.
 3. Ensure you are using JDK 17.
 4. Sync the project with Gradle files.
 5. Build and run:
+
 ```bash
 ./gradlew assembleDebug
-
 ```
 
 
@@ -68,5 +67,3 @@ This project is licensed under the MIT License - see the [LICENSE](https://www.g
 ---
 
 *Disclaimer: This app is a utility for automating local device actions via Shizuku. It does not modify, hack, or alter the code of any third-party applications.*
-
-```
