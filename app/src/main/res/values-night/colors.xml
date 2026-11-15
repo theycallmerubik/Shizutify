@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Backgrounds (Deep warm charcoals and dark taupes) -->
-    <color name="bg_alabaster">#1C1917</color>
-    <color name="surface_cream">#292524</color>
-    <color name="surface_card_cream">#34312F</color>
+    <!-- Backgrounds (Deep navy and dark blue-gray) -->
+    <color name="bg_alabaster">#0F1322</color>
+    <color name="surface_cream">#181E36</color>
+    <color name="surface_card_cream">#222A46</color>
 
-    <!-- Accents & Buttons (Adjusted for dark mode contrast) -->
-    <color name="primary_terracotta">#D05C35</color>
-    <color name="paused_slate">#525A6E</color>
-    <color name="accent_peach">#543A24</color>
+    <!-- Accents & Buttons (Brightened for dark mode contrast) -->
+    <color name="primary_terracotta">#647BCE</color>
+    <color name="paused_slate">#5A688A</color>
+    <color name="accent_peach">#41C77D</color>
 
-    <!-- Alert Container -->
-    <color name="alert_peach_bg">#3B2212</color>
-    <color name="alert_peach_stroke">#5E371C</color>
+    <!-- Alert Container (Dark forest green) -->
+    <color name="alert_peach_bg">#103622</color>
+    <color name="alert_peach_stroke">#1D643E</color>
 
     <!-- Status Badges -->
-    <color name="status_running_sage">#2E422C</color>
-    <color name="status_paused_sage">#373C37</color>
+    <color name="status_running_sage">#1C4D31</color>
+    <color name="status_paused_sage">#2A3451</color>
 
-    <!-- Text & Icons (Inverted: Replaces dark brown with warm cream in dark mode) -->
-    <color name="espresso_brown">#F3E9D2</color>
-    <color name="espresso_brown_70">#B3F3E9D2</color>
+    <!-- Text & Icons (Icy white) -->
+    <color name="espresso_brown">#E6ECF7</color>
+    <color name="espresso_brown_70">#B3E6ECF7</color>
 </resources>

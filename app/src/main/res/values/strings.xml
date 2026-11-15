@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">shizutify</string>
+    <string name="app_name">Shizutify</string>
     <string name="status_running">service running</string>
     <string name="status_paused">service paused</string>
     <string name="alert_notif_permission">tap the start button to grant\nnotification listener access</string>

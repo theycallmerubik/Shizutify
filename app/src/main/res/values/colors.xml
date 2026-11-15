@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Core Warm Palette -->
-    <color name="bg_alabaster">#FAFAFA</color>
-    <color name="surface_cream">#F3E9D2</color>
-    <color name="surface_card_cream">#F7EFE0</color>
-    <color name="primary_terracotta">#A84323</color>
-    <color name="paused_slate">#6B748E</color>
-    <color name="accent_peach">#F5C99B</color>
-    <color name="alert_peach_bg">#FADAB8</color>
-    <color name="alert_peach_stroke">#F2C18D</color>
-    <color name="status_running_sage">#D2DEC8</color>
-    <color name="status_paused_sage">#B7C2B8</color>
-    <color name="espresso_brown">#4A2E1B</color>
-    <color name="espresso_brown_70">#B34A2E1B</color>
+    <!-- Backgrounds (Ice white and soft blue-tinted surfaces) -->
+    <color name="bg_alabaster">#F4F7FC</color>
+    <color name="surface_cream">#FFFFFF</color>
+    <color name="surface_card_cream">#EAF0F8</color>
+
+    <!-- Accents & Buttons (Logo Blue and Vibrant Green) -->
+    <color name="primary_terracotta">#3BCE7B</color>
+    <color name="paused_slate">#4A60B3</color>
+    <color name="accent_peach">#3BB470</color>
+
+    <!-- Alert Container (Soft mint green) -->
+    <color name="alert_peach_bg">#E2F4EA</color>
+    <color name="alert_peach_stroke">#94DAB3</color>
+
+    <!-- Status Badges -->
+    <color name="status_running_sage">#C6ECD7</color>
+    <color name="status_paused_sage">#DCE2ED</color>
+
+    <!-- Text & Icons (Deep indigo matching the cat's eyes) -->
+    <color name="espresso_brown">#20294F</color>
+    <color name="espresso_brown_70">#B320294F</color>
 </resources>
