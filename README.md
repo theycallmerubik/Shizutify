@@ -20,7 +20,7 @@ Shizutify is a lightweight, open-source Android utility that automatically skips
 
 ## 🚀 Installation & Setup
 
-1. Download the latest `Shizutify-v1.0.0.apk` from the [Releases](../../releases) tab.
+1. Download the latest `Shizutify-v*.*.*.apk` from the [Releases](../../releases) tab.
 2. Install the APK on your device.
 3. Open **Shizutify** and tap the large toggle button to grant the required permissions:
    * **Notification Access:** Allows the app to read incoming notifications to detect ads.
