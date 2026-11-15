@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingVertical="10dp"
-    android:paddingHorizontal="8dp">
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="10dp">
 
     <ImageView
         android:id="@+id/ivAppIcon"
@@ -27,7 +28,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textAppearance="?attr/textAppearanceBodyLarge"
+            android:textColor="@color/espresso_brown"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -36,7 +38,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textAppearance="?attr/textAppearanceBodySmall" />
+            android:textColor="@color/espresso_brown_70"
+            android:textSize="13sp" />
     </LinearLayout>
 
     <com.google.android.material.checkbox.MaterialCheckBox
@@ -44,5 +47,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
-        android:focusable="false" />
+        android:focusable="false"
+        app:buttonTint="@color/espresso_brown" />
 </LinearLayout>

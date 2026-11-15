@@ -1,135 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/bg_alabaster"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="16dp">
 
+    <!-- Top-Left More Info Button -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnInfo"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/surface_cream"
+        app:cardCornerRadius="27dp"
+        app:cardElevation="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_info" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Top-Right Settings Button -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnSettings"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/surface_cream"
+        app:cardCornerRadius="27dp"
+        app:cardElevation="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_settings" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Center Control Group -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/centerGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
-        android:padding="20dp">
+        app:layout_constraintBottom_toTopOf="@+id/cardAlertBanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnInfo"
+        app:layout_constraintVertical_bias="0.46">
 
-        <TextView
+        <!-- Brand Capsule Pill -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAppearance="?attr/textAppearanceHeadlineLarge"
-            android:textStyle="bold" />
+            app:cardBackgroundColor="@color/surface_cream"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
 
-        <TextView
-            android:id="@+id/tvStatusSub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="20dp"
-            android:text="Checking Shizuku &amp; Notification permissions…"
-            android:textAppearance="?attr/textAppearanceBodyMedium" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:paddingHorizontal="28dp"
+                android:paddingVertical="8dp"
+                android:text="@string/app_name"
+                android:textColor="@color/espresso_brown"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <!-- Big Start / Stop Toggle Button -->
-        <com.google.android.material.button.MaterialButton
+        <!-- Big Primary Squircle Button -->
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/btnToggleService"
-            android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:text="@string/service_stopped"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:cornerRadius="28dp" />
+            android:layout_width="196dp"
+            android:layout_height="196dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="36dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/primary_terracotta"
+            app:cardCornerRadius="42dp"
+            app:cardElevation="6dp"
+            app:strokeWidth="0dp">
 
-        <!-- Title Filter Card -->
-        <com.google.android.material.card.MaterialCardView
-            style="?attr/materialCardViewFilledStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilTitleFilter"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/title_filter_hint"
-                    app:helperText="Default: Advertisement (supports Regex)">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etTitleFilter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/cbTitleCase"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/case_sensitive" />
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/ivToggleIcon"
+                android:layout_width="108dp"
+                android:layout_height="108dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_play_rounded" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Text Filter Card -->
+        <!-- Status Capsule Badge -->
         <com.google.android.material.card.MaterialCardView
-            style="?attr/materialCardViewFilledStyle"
-            android:layout_width="match_parent"
+            android:id="@+id/cardStatusBadge"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="20dp">
+            app:cardBackgroundColor="@color/status_running_sage"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvStatusBadge"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilTextFilter"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/text_filter_hint"
-                    app:helperText="Leave empty to ignore body text (supports Regex)">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etTextFilter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/cbTextCase"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/case_sensitive" />
-            </LinearLayout>
+                android:fontFamily="sans-serif"
+                android:paddingHorizontal="28dp"
+                android:paddingVertical="10dp"
+                android:text="@string/status_running"
+                android:textColor="@color/espresso_brown"
+                android:textSize="20sp" />
         </com.google.android.material.card.MaterialCardView>
-
-        <!-- App Selection Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSelectApps"
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/select_apps_btn"
-            android:textSize="16sp"
-            app:cornerRadius="18dp" />
-
-        <TextView
-            android:id="@+id/tvSelectedAppsSummary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textAppearance="?attr/textAppearanceBodySmall" />
 
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+
+    <!-- Conditional Permission Alert Banner -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardAlertBanner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/alert_peach_bg"
+        app:cardCornerRadius="36dp"
+        app:cardElevation="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvFooter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/alert_peach_stroke"
+        app:strokeWidth="1.5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="16dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_warning" />
+
+            <TextView
+                android:id="@+id/tvAlertBanner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="2dp"
+                android:text="@string/alert_shizuku_permission"
+                android:textColor="@color/espresso_brown"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Footer -->
+    <TextView
+        android:id="@+id/tvFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/footer_credit"
+        android:textColor="@color/espresso_brown"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
