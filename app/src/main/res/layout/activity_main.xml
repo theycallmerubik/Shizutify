@@ -52,7 +52,7 @@
             android:src="@drawable/ic_settings" />
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Center Control Group -->
+    <!-- Center Control Group (Shifted Higher) -->
     <LinearLayout
         android:id="@+id/centerGroup"
         android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnInfo"
-        app:layout_constraintVertical_bias="0.46">
+        app:layout_constraintVertical_bias="0.15">
 
         <!-- Brand Capsule Pill -->
         <com.google.android.material.card.MaterialCardView
@@ -91,8 +91,8 @@
             android:id="@+id/btnToggleService"
             android:layout_width="196dp"
             android:layout_height="196dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginBottom="36dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             android:clickable="true"
             android:focusable="true"
             app:cardBackgroundColor="@color/primary_terracotta"
@@ -138,12 +138,12 @@
         android:id="@+id/cardAlertBanner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:visibility="gone"
         app:cardBackgroundColor="@color/alert_peach_bg"
         app:cardCornerRadius="36dp"
         app:cardElevation="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvFooter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/alert_peach_stroke"
@@ -176,19 +176,5 @@
                 android:textSize="16sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <!-- Footer -->
-    <TextView
-        android:id="@+id/tvFooter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/footer_credit"
-        android:textColor="@color/espresso_brown"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
