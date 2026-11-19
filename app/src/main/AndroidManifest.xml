@@ -35,6 +35,10 @@
             android:name=".MoreInfoActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".DebugActivity"
+            android:exported="false" />
+
         <!-- Notification Listener Service -->
         <service
             android:name=".AdSkipNotificationService"

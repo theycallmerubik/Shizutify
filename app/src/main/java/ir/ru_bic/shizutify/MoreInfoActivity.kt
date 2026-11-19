@@ -3,6 +3,7 @@ package ir.ru_bic.shizutify
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,6 +14,8 @@ import ir.ru_bic.shizutify.databinding.ActivityMoreInfoBinding
 class MoreInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMoreInfoBinding
+    private var heartTapCount = 0
+    private var lastHeartTapTime = 0L
 
     companion object {
         private const val SOURCE_CODE_URL = "https://github.com/theycallmerubik/Shizutify"
@@ -37,9 +40,26 @@ class MoreInfoActivity : AppCompatActivity() {
         binding.cardPersonalSite.setOnClickListener {
             openUrl(PERSONAL_SITE_URL)
         }
+
+        binding.tvHeart.setOnClickListener { view ->
+            val now = System.currentTimeMillis()
+            if (now - lastHeartTapTime > 2000L) {
+                heartTapCount = 0
+            }
+            lastHeartTapTime = now
+            heartTapCount++
+
+            if (heartTapCount >= 5) {
+                heartTapCount = 0
+                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+                DebugLogger.log("UI", "Hidden Debug Console opened")
+                startActivity(Intent(this, DebugActivity::class.java))
+            }
+        }
     }
 
     private fun openUrl(url: String) {
+        DebugLogger.log("UI", "Opening external URL: $url")
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
     }

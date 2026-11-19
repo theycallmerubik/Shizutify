@@ -136,6 +136,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             prefs.isServiceEnabled = !prefs.isServiceEnabled
+            DebugLogger.log("UI", "Service toggled -> enabled=${prefs.isServiceEnabled}")
             updateStatusUi(animate = true)
         }
 

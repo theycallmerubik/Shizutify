@@ -155,18 +155,44 @@
 
     </LinearLayout>
 
-    <!-- Footer -->
-    <TextView
+    <!-- Footer with clickable heart for hidden debug menu -->
+    <LinearLayout
         android:id="@+id/tvFooter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/footer_credit"
-        android:textColor="@color/espresso_brown"
-        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="built with"
+            android:textColor="@color/espresso_brown"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvHeart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="4dp"
+            android:text="❤️"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="by rubik"
+            android:textColor="@color/espresso_brown"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.media.session.MediaSessionManager
+import android.media.session.PlaybackState
 import android.os.SystemClock
 import android.view.KeyEvent
 import kotlinx.coroutines.delay
@@ -20,18 +21,17 @@ object ShizukuShell {
             Shizuku.pingBinder() &&
                     Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED
         } catch (e: Exception) {
+            DebugLogger.log("SHIZUKU", "isAvailableAndGranted error: ${e.message}")
             false
         }
     }
 
-    /**
-     * Force-stops the target app, relaunches its main activity cleanly via 'am start'
-     * (avoiding 'monkey' rotation side-effects), waits 2 seconds, and sends simulated Play.
-     */
     suspend fun restartAndResumeApp(context: Context, packageName: String) {
-        if (!isAvailableAndGranted()) return
+        if (!isAvailableAndGranted()) {
+            DebugLogger.log("SHIZUKU", "Aborting restart: Shizuku not available or permission denied")
+            return
+        }
 
-        // Dynamically resolve the app's default launcher activity (e.g., com.spotify.music/.MainActivity)
         val launchComponent = context.packageManager
             .getLaunchIntentForPackage(packageName)
             ?.component
@@ -43,48 +43,69 @@ object ShizukuShell {
             "am start -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -p $packageName --activity-no-animation"
         }
 
-        // 1. Force-stop and relaunch without touching screen rotation
         val restartCmd = "am force-stop $packageName ; $startCmd </dev/null >/dev/null 2>&1 &"
+        DebugLogger.log("SHIZUKU", "Executing: $restartCmd")
         runCommand(restartCmd)
 
-        // 2. Wait 2 seconds
+        DebugLogger.log("SHIZUKU", "Waiting 2000ms before Play dispatch #1")
         delay(2000L)
+        sendSimulatedPlay(context, packageName, attempt = 1)
 
-        // 3. Trigger Tasker-style "Play [Simulated Only]"
-        sendSimulatedPlay(context, packageName)
+        delay(800L)
+        val playing = isPackagePlaying(context, packageName)
+        DebugLogger.log("SHIZUKU", "Playback check at 2800ms -> isPlaying=$playing")
+        if (!playing) {
+            sendSimulatedPlay(context, packageName, attempt = 2)
+        }
     }
 
-    private fun sendSimulatedPlay(context: Context, packageName: String) {
+    private fun isPackagePlaying(context: Context, packageName: String): Boolean {
+        return try {
+            val msm = context.getSystemService(Context.MEDIA_SESSION_SERVICE) as MediaSessionManager
+            val listenerComponent = ComponentName(context, AdSkipNotificationService::class.java)
+            msm.getActiveSessions(listenerComponent).any { controller ->
+                controller.packageName == packageName &&
+                        controller.playbackState?.state == PlaybackState.STATE_PLAYING
+            }
+        } catch (e: Exception) {
+            DebugLogger.log("SHIZUKU", "isPackagePlaying check failed: ${e.message}")
+            false
+        }
+    }
+
+    private fun sendSimulatedPlay(context: Context, packageName: String, attempt: Int) {
+        DebugLogger.log("PLAY", "Dispatching simulated PLAY (attempt #$attempt) for $packageName")
         val now = SystemClock.uptimeMillis()
         val downEvent = KeyEvent(now, now, KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_PLAY, 0)
         val upEvent = KeyEvent(now, now, KeyEvent.ACTION_UP, KeyEvent.KEYCODE_MEDIA_PLAY, 0)
 
-        // Method A: Direct MediaSession transport control via NotificationListenerService
         try {
             val msm = context.getSystemService(Context.MEDIA_SESSION_SERVICE) as MediaSessionManager
             val listenerComponent = ComponentName(context, AdSkipNotificationService::class.java)
             val controllers = msm.getActiveSessions(listenerComponent)
+            var matched = false
             for (controller in controllers) {
                 if (controller.packageName == packageName) {
+                    matched = true
                     controller.dispatchMediaButtonEvent(downEvent)
                     controller.dispatchMediaButtonEvent(upEvent)
                     controller.transportControls.play()
                 }
             }
+            DebugLogger.log("PLAY", "MediaSession dispatch -> foundSession=$matched (totalSessions=${controllers.size})")
         } catch (e: Exception) {
-            e.printStackTrace()
+            DebugLogger.log("ERROR", "MediaSession play failed: ${e.message}")
         }
 
-        // Method B: AudioManager simulated media key event
         try {
             val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
             audioManager.dispatchMediaKeyEvent(downEvent)
             audioManager.dispatchMediaKeyEvent(upEvent)
+            DebugLogger.log("PLAY", "AudioManager.dispatchMediaKeyEvent sent")
         } catch (e: Exception) {
-            e.printStackTrace()
+            DebugLogger.log("ERROR", "AudioManager play failed: ${e.message}")
         }
 
-        // Method C: Explicit ACTION_MEDIA_BUTTON broadcast targeted at the package
         try {
             val downIntent = Intent(Intent.ACTION_MEDIA_BUTTON).apply {
                 setPackage(packageName)
@@ -97,8 +118,9 @@ object ShizukuShell {
                 putExtra(Intent.EXTRA_KEY_EVENT, upEvent)
             }
             context.sendBroadcast(upIntent)
+            DebugLogger.log("PLAY", "ACTION_MEDIA_BUTTON broadcast sent to $packageName")
         } catch (e: Exception) {
-            e.printStackTrace()
+            DebugLogger.log("ERROR", "Broadcast play failed: ${e.message}")
         }
     }
 
@@ -118,10 +140,11 @@ object ShizukuShell {
                 null
             ) as ShizukuRemoteProcess
 
-            process.waitFor(3, TimeUnit.SECONDS)
+            val finished = process.waitFor(3, TimeUnit.SECONDS)
+            DebugLogger.log("SHIZUKU", "Shell process finishedInTime=$finished")
             process.destroy()
         } catch (e: Exception) {
-            e.printStackTrace()
+            DebugLogger.log("ERROR", "Shizuku runCommand failed: ${e.message}")
         }
     }
 }
