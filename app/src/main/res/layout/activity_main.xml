@@ -106,7 +106,7 @@
                 android:layout_height="108dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_play_rounded" />
+                android:src="@drawable/ic_pause_rounded" />
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Status Capsule Badge -->

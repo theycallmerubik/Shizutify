@@ -210,7 +210,7 @@ class MainActivity : AppCompatActivity() {
             if (newState == STATE_RUNNING) R.color.status_running_sage else R.color.status_paused_sage
         )
         val targetIconRes =
-            if (newState == STATE_PAUSED) R.drawable.ic_pause_rounded else R.drawable.ic_play_rounded
+            if (newState == STATE_PAUSED) R.drawable.ic_play_rounded else R.drawable.ic_pause_rounded
         val targetStatusText =
             getString(if (newState == STATE_RUNNING) R.string.status_running else R.string.status_paused)
 
