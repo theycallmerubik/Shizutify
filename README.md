@@ -62,7 +62,7 @@ This project is built with **Kotlin** and **Gradle**.
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/theycallmerubik/Shizutify/blob/master/LICENSE) file for details.
 
 ---
 
