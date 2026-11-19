@@ -18,6 +18,9 @@ Shizutify is a lightweight, open-source Android utility that automatically skips
 1. **Android 8.0+** (API Level 26 or higher).
 2. **[Shizuku](https://shizuku.rikka.app/)** must be installed and actively running on your device (can be started via Wireless Debugging, ADB, or Root).
 
+**Note:** Since this app requires Shizuku for some features, the Shizuku service stops automatically in the Official Shizuku App. To prevent this happening, Uninstall the Original Shizuku and Install this [Shizuku Fork](https://github.com/thedjchi/Shizuku) </b> and after installed, then run shizuku normally and make sure that you go to shizuku app, on the top right, click settings icon and click <b>"Watchdog"</b> which prevents Shizuku service from Stopping !!)
+
+
 ## 🚀 Installation & Setup
 
 1. Download the latest `Shizutify-v*.*.*.apk` from the [Releases](../../releases) tab.
